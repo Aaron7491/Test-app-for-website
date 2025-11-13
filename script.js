@@ -1,8 +1,8 @@
 let pyodide;
 
-// Initialize Pyodide when the page loads
-async function initPyodide() {
+async function main() {
     pyodide = await loadPyodide();
+    console.log("Pyodide loaded successfully");
 }
 
 async function calculateForce() {
@@ -24,7 +24,7 @@ async function calculateForce() {
             resultDiv.style.backgroundColor = '#fff3cd';
             resultDiv.style.color = '#856404';
             resultDiv.textContent = 'Loading Python environment...';
-            await initPyodide();
+            await main();
         }
         
         // Python code to calculate force
@@ -57,12 +57,11 @@ result
 
 // Allow Enter key to trigger calculation
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Pyodide on page load
-    initPyodide();
-    
     document.getElementById('mass').addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             calculateForce();
         }
     });
 });
+
+main();
